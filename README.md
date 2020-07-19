@@ -1,4 +1,7 @@
 # Geographical Location of Universities
+---
+### where.data
+- You can create your own file and add University name in text format
 
 ---
 ###  geoload.py :
