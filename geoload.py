@@ -7,7 +7,7 @@ import ssl
 api_key = False
 if api_key is False:
     api_key = 42
-    serviceurl = "http://py4e-data.dr-chuck.net/geojson?"
+    serviceurl = "http://py4e-data.dr-chuck.net/json?"
 else:
     serviceurl = "https://maps.googleapis.com/maps/api/geocode/json?"
 
@@ -57,10 +57,10 @@ for line in fhand:
         print(geodata)
         continue
 
-    if 'status' not in js or (js['status'] != 'OK' and js['status'] != 'ZERO_RESULTS'):
+    if 'status' not in js or (js['status'] != 'OK' and js['status'] == 'ZERO_RESULTS'):
         print('-----FAIl to find data ------')
         print(geodata)
-        break
+        continue
 
     cur.execute('INSERT INTO Location (address, geodata) VALUES (?,?)',
                 (memoryview(address.encode()), memoryview(geodata.encode())))
